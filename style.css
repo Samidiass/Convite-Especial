@@ -1,0 +1,255 @@
+** {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Press Start 2P', cursive;
+    user-select: none;
+}
+
+body {
+    background-color: #fce4ec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Fundo Transparente Flutuando */
+.bg-hearts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.bg-heart {
+    position: absolute;
+    bottom: -20px;
+    color: rgba(211, 47, 47, 0.25);
+    font-size: 24px;
+    animation: floatUp 8s infinite linear;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(0.8); opacity: 0; }
+    50% { opacity: 0.6; }
+    100% { transform: translateY(-105vh) scale(1.2); opacity: 0; }
+}
+
+.main-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+}
+
+.pixel-frame {
+    width: 100%;
+    max-width: 400px;
+    background-color: #ffffff;
+    border: 10px solid #d32f2f;
+    border-radius: 8px;
+    box-shadow: 0 8px 0 #9a0007;
+    padding: 20px 15px;
+    background-image: radial-gradient(#d32f2f 18%, transparent 19%);
+    background-size: 16px 16px;
+}
+
+.pixel-screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    border: 4px solid #d32f2f;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.pixel-screen.active {
+    display: flex;
+}
+
+.title {
+    color: #d32f2f;
+    font-size: 11px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.text {
+    color: #d32f2f;
+    font-size: 8px;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.text-status {
+    color: #9a0007;
+    font-size: 8px;
+    height: 12px;
+    margin-bottom: 6px;
+}
+
+.btn-pixel {
+    background-color: #d32f2f;
+    color: #ffffff;
+    border: 3px solid #9a0007;
+    padding: 10px 12px;
+    font-size: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #9a0007;
+    margin-top: 8px;
+}
+
+.btn-pixel:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 #9a0007;
+}
+
+.hidden { display: none !important; }
+
+.pixel-photo {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #d32f2f;
+    border-radius: 4px;
+    margin: 12px 0;
+    box-shadow: 0 3px 0 #9a0007;
+}
+
+/* Maquininha */
+.machine-box {
+    width: 200px;
+    height: 180px;
+    border: 3px solid #d32f2f;
+    background-color: #ffebee;
+    position: relative;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.claw-arm {
+    width: 4px;
+    height: 30px;
+    background-color: #d32f2f;
+    position: absolute;
+    top: 0;
+    left: 98px;
+    z-index: 5;
+}
+
+.claw-head {
+    width: 20px;
+    height: 10px;
+    border: 2px solid #d32f2f;
+    position: absolute;
+    bottom: -10px;
+    left: -8px;
+    border-radius: 0 0 8px 8px;
+}
+
+.inner-heart {
+    position: absolute;
+    color: #ff5252;
+    font-size: 11px;
+    z-index: 2;
+    animation: floatMachine 1.8s infinite ease-in-out alternate;
+}
+
+@keyframes floatMachine {
+    from { transform: translateY(0); }
+    to { transform: translateY(-8px); }
+}
+
+.envelope {
+    width: 22px;
+    height: 16px;
+    background-color: #d32f2f;
+    position: absolute;
+    bottom: 10px;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    font-size: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+}
+
+.controls {
+    display: flex;
+    gap: 8px;
+}
+
+/* Visualização das Imagens */
+.card-letter {
+    border: 2px dashed #d32f2f;
+    padding: 12px;
+    background-color: #fff0f3;
+    margin-bottom: 12px;
+    font-size: 8px;
+    color: #d32f2f;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.tickets-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.ticket {
+    border: 2px solid #d32f2f;
+    background-color: #ffebee;
+    padding: 10px;
+    font-size: 8px;
+    color: #d32f2f;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ticket:hover {
+    background-color: #d32f2f;
+    color: #ffffff;
+}
+
+.ticket-image-container {
+    width: 100%;
+    max-height: 320px;
+    overflow-y: auto;
+    border: 3px solid #d32f2f;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    background-color: #fff;
+}
+
+.ticket-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.btn-no {
+    background-color: #757575;
+    border-color: #424242;
+    box-shadow: 0 4px 0 #424242;
+}

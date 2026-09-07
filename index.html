@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite Especial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Corações transparentes no fundo geral -->
+    <div class="bg-hearts">
+        <div class="bg-heart" style="left: 10%; animation-delay: 0s;">♥</div>
+        <div class="bg-heart" style="left: 25%; animation-delay: 2s;">♥</div>
+        <div class="bg-heart" style="left: 45%; animation-delay: 1s;">♥</div>
+        <div class="bg-heart" style="left: 65%; animation-delay: 3s;">♥</div>
+        <div class="bg-heart" style="left: 85%; animation-delay: 1.5s;">♥</div>
+    </div>
+
+    <main class="main-container">
+        <div class="pixel-frame">
+            
+            <!-- TELA 1: INÍCIO -->
+            <div id="screen-start" class="pixel-screen active">
+            
+                <img src="images (1).jpeg" alt="Foto" class="pixel-photo">
+                <p class="text">OIIII PRINCESA!</p>
+                <p class="text">TOPA UM JOGUINHO? RSRS</p>
+                <button class="btn-pixel" onclick="goToScreen('screen-game')">[ START ]</button>
+            </div>
+
+            <!-- TELA 2: MAQUININHA -->
+            <div id="screen-game" class="pixel-screen">
+                <h1 class="title">❤️❤️</h1>
+                <p id="counter" class="text">CARTAS: 0/3</p>
+                <p id="status-msg" class="text-status">Mire e aperte PEGAR!</p>
+                
+                <div class="machine-box">
+                    <div id="claw-arm" class="claw-arm">
+                        <div id="claw-head" class="claw-head"></div>
+                    </div>
+
+                    <!-- 10 Corações flutuantes dentro da maquininha -->
+                    <div class="inner-heart" style="left: 15px; bottom: 40px; animation-delay: 0s;">♥</div>
+                    <div class="inner-heart" style="left: 35px; bottom: 85px; animation-delay: 0.3s;">♥</div>
+                    <div class="inner-heart" style="left: 55px; bottom: 50px; animation-delay: 0.7s;">♥</div>
+                    <div class="inner-heart" style="left: 75px; bottom: 105px; animation-delay: 0.2s;">♥</div>
+                    <div class="inner-heart" style="left: 95px; bottom: 65px; animation-delay: 0.9s;">♥</div>
+                    <div class="inner-heart" style="left: 115px; bottom: 95px; animation-delay: 0.4s;">♥</div>
+                    <div class="inner-heart" style="left: 135px; bottom: 45px; animation-delay: 0.8s;">♥</div>
+                    <div class="inner-heart" style="left: 155px; bottom: 80px; animation-delay: 0.1s;">♥</div>
+                    <div class="inner-heart" style="left: 170px; bottom: 110px; animation-delay: 0.6s;">♥</div>
+                    <div class="inner-heart" style="left: 85px; bottom: 35px; animation-delay: 0.5s;">♥</div>
+
+                    <!-- Cartas -->
+                    <div id="env-1" class="envelope" style="left: 35px;">✉</div>
+                    <div id="env-2" class="envelope" style="left: 95px;">✉</div>
+                    <div id="env-3" class="envelope" style="left: 155px;">✉</div>
+                </div>
+
+                <div class="controls">
+                    <button class="btn-pixel" onclick="moveClaw(-15)">◄</button>
+                    <button id="btn-catch" class="btn-pixel" onclick="catchEnvelope()">PEGAR</button>
+                    <button class="btn-pixel" onclick="moveClaw(15)">►</button>
+                </div>
+
+                <button id="btn-next" class="btn-pixel hidden" onclick="goToScreen('screen-invite')">[ LER CONVITE ➔ ]</button>
+            </div>
+
+            <!-- TELA 3: CONVITE FOFINHO -->
+            <div id="screen-invite" class="pixel-screen">
+                <h1 class="title">VOCÊ VENCEU O JOGO! </h1>
+                
+                <div class="card-letter">
+                    "Mas a verdadeira vitória vai ser a minha se você aceitar sair comigo. Dá uma olhadinha nos tickets que preparei com carinho e escolhe qual prêmio você quer resgatar! ♥"
+                </div>
+
+                <button class="btn-pixel" onclick="goToScreen('screen-tickets')">[ VER TICKETS ]</button>
+
+                <p class="text" style="margin-top: 15px;">ACEITA SAIR COMIGO?</p>
+                <div class="actions">
+                    <button class="btn-pixel" onclick="sendWhatsapp()">SIM!</button>
+                    <button id="btn-no" class="btn-pixel btn-no" onmouseover="runAway()" onclick="runAway()">NÃO</button>
+                </div>
+            </div>
+
+            <!-- TELA 4: TICKETS -->
+            <div id="screen-tickets" class="pixel-screen">
+                <h1 class="title">ESCOLHA UM DATE</h1>
+                
+                <div class="tickets-container">
+                    <div class="ticket" onclick="showTicketDetail('pordosol')">
+                        <span>TICKET 1</span>
+                        <span>PÔR DO SOL G10</span>
+                    </div>
+                    <div class="ticket" onclick="showTicketDetail('jardins')">
+                        <span>TICKET 2</span>
+                        <span>JARDINS CAFÉ</span>
+                    </div>
+                    <div class="ticket" onclick="showTicketDetail('cajuba')">
+                        <span>TICKET 3</span>
+                        <span>O CAJUBÁ</span>
+                    </div>
+                </div>
+
+                <button class="btn-pixel" onclick="goToScreen('screen-invite')">◄ VOLTAR AO CONVITE</button>
+            </div>
+
+            <!-- TELA 5: IMAGEM DO CONVITE SELECIONADO -->
+            <div id="screen-detail" class="pixel-screen">
+                <h1 id="detail-title" class="title">DETALHES</h1>
+                
+                <div class="ticket-image-container">
+                    <img id="detail-image" src="" alt="Convite Especial" class="ticket-img">
+                </div>
+
+                <button class="btn-pixel" onclick="goToScreen('screen-tickets')">◄ VOLTAR PARA TICKETS</button>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
